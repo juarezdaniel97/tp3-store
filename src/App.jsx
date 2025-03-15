@@ -1,14 +1,16 @@
+import Home from './page/Home';
+import {useProducts} from './hooks/useProducts';
 
 function App() {
+  
+  const products = useProducts()
+
+  console.log('products-->', products);
   
 
   return (
     <>
-      <h1
-      className="bg-green-200"
-      >
-        Hello World
-      </h1>
+      <Home/>
     </>
   )
 }
