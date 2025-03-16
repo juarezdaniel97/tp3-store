@@ -1,16 +1,18 @@
-import Home from './page/Home';
-import {useProducts} from './hooks/useProducts';
+import { useProductsContext } from "./contexts/ProductsContext"
+import { useThemeContext } from "./contexts/ThemeContext"
+import Home from "./page/Home";
+
+
 
 function App() {
-  
-  const products = useProducts()
-
-  console.log('products-->', products);
-  
+  const {theme, toggleTheme} = useThemeContext();
+  const products  = useProductsContext();
 
   return (
     <>
-      <Home/>
+      <div className="min-h-screen bg-white text-black dark:bg-gray-800 dark:text-white">  
+        <Home/>
+      </div>
     </>
   )
 }

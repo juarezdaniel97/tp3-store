@@ -19,8 +19,8 @@ export function ProductsProvider({children}) {
 export function useProductsContext() {
     const context = useContext(ProductsContext);
 
-    if (context === undefined) {
-        throw new Error("useProductsContext, debe ser utilizado dentro de un ProductsProvider");
+    if (!context) {
+        throw new Error("useProductsContext debe ser utilizado dentro de un ProductsProvider");
     }
 
     return context;
