@@ -1,30 +1,30 @@
 export const products = [
     {
         id: 1,
-        name: "Camiseta premium",
-        description: "Camiseta de algodón 100% suave y cómoda",
-        price: 29.99,
-        image: ""
+        name: "Gorra Red Bull",
+        description: "Oficial del equipo Red Bull Racing",
+        price: 15,
+        image: "https://i5-mx.walmartimages.com/mg/gm/3pp/asr/ed753063-659d-4e03-add8-a42dd754bae9.1379483ec27256cf5c1b61a9a1e88508.jpeg?odnHeight=2000&odnWidth=2000&odnBg=ffffff"
     },
     {
         id: 2,
-        name: "Pantalón casual",
-        description: "Pantalón elegante para cualquier ocasión",
-        price: 59.99,
-        image: "/images/products/pants.jpg"
+        name: "Camiseta Argentina",
+        description: "Camiseta campeón del mundo Qatar 2022",
+        price: 1100,
+        image: "https://directoagol.com/wp-content/uploads/2021/03/messi-1639x2048.jpg"
     },
     {
         id: 3,
-        name: "Sudadera con capucha",
-        description: "Sudadera cálida para días fríos",
-        price: 49.99,
-        image: "/images/products/hoodie.jpg"
+        name: "Remera Real Madrid",
+        description: "Remera casual de uso diario",
+        price: 60,
+        image: "/remera.avif"
     },
     {
         id: 4,
-        name: "Zapatillas urbanas",
-        description: "Zapatillas cómodas para el día a día",
-        price: 89.99,
-        image: ""
+        name: "Zapatillas",
+        description: "Zapatillas urbanas cómodas para el día a día",
+        price: 90,
+        image: "/zapatillas.jpg"
     }
 ];

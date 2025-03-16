@@ -13,15 +13,15 @@ const {theme, toggleTheme} = useThemeContext();
     return (
         <nav className='bg-slate-100 text-black dark:bg-gray-900 shadow-md p-4'>
             <div className='max-w-7xl mx-auto flex items-center justify-between'>
+                
                 {/* Logo */}
-                {/* <h1 className='text-2xl font-bold text-gray-800  dark:text-white'>Stored</h1> */}
-                <div>
-                    <div className="flex items-center space-x-2">
-                        <div className="w-3 h-6 bg-gray-600 dark:bg-white rounded-sm" />
-                        <div className="w-1 h-6 bg-indigo-600 rounded-sm" />
-                        <span className="text-dark dark:text-white text-xl font-semibold">Store</span>
+                    <div>
+                        <div className="flex items-center space-x-2">
+                            <div className="w-3 h-6 bg-gray-600 dark:bg-white rounded-sm" />
+                            <div className="w-1 h-6 bg-indigo-600 rounded-sm" />
+                            <span className="text-dark dark:text-white text-xl font-semibold">Store</span>
+                        </div>
                     </div>
-                </div>
                 {/* Desktop */}
                     <Desktop
                         menuItems={menuItems}
