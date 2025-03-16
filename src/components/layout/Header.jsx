@@ -61,9 +61,13 @@ const { getCountPrducts } = useCarritoContext()
                         {/* Carrito */}
                         <button className="relative p-2">
                             <ShoppingCart size={24} className="text-gray-700 dark:text-white" />
-                            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-2 rounded-full">
-                                3
-                            </span>
+                            {
+                                getCountPrducts()>0 && (
+                                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-2 rounded-full">
+                                        {getCountPrducts()}
+                                    </span>
+                                )
+                            }
                         </button>
 
                         {/* Button Theme */}
