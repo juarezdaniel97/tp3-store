@@ -4,7 +4,7 @@ const MenuItem = ({title, href, isNew}) => {
     return (
         <div>
             <a href={href}
-                className='text-gray-700 dark:text-gray-300 hover:text-blue-500'
+                className='text-gray-700 dark:text-gray-300 hover:text-blue-400'
             >
                 {title}
 
