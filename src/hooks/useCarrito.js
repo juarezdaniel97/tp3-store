@@ -12,33 +12,59 @@ export const useCarrito = ()=>{
     }, [carrito])
 
 
-    const addToCard = (product) => {
+    //Añadir un producto
+    const addToCart = (product) => {
 
-        const findProduct = getProduct(product.id)
-
-        console.log('findProduct -->', findProduct );
-        
-        if (!findProduct) {
-            const updateCard = [...carrito, product]
-            setCarrito(updateCard)
-            console.log('cargado.. ');
+        setCarrito((prev) => {
             
-        }else{
-            console.log('El producto ya existe.. ');
-        }
+            const existingProduct = prev.find((item) => item.id === product.id);
+
+            if (existingProduct) {
+
+                return prev.map((item) => item.id === product.id ? { ...item, cantidad: item.cantidad + 1 } : item);
+
+            } else {
+
+                return [...prev, { ...product, cantidad: 1 }];
+
+            }
+        });
+    };
+
+
+    //Decrementar Cantidad del Producto
+    const decreaseQuantity = (id) => {
+            setCarrito((prev) => prev.map((item) =>item.id === id ? { ...item, cantidad: item.cantidad - 1 } : item)
+                .filter((item) => item.cantidad > 0)
+            );
+    };
+    
+    //Eliminar Producto
+    const deleteProduct = (id) =>{
+        setCarrito((prev) => prev.filter((item) => item.id !== id));
     }
 
-    const deleteFromCard = (id) =>{
-        const updateCard = carrito.filter((product=> product.id !== id ))
-        setCarrito(updateCard)
+    // Calcular el total del carrito
+    const getTotalPrice = () => {
+        return carrito.reduce((total, item) => total + item.precio * item.cantidad, 0);
+    };
+
+    //Cantidad de Productos 
+    const getCountPrducts = () =>{
+        return carrito.reduce((contador, item) => contador + item.cantidad, 0)
     }
 
-    const getProduct = (id) => {
-        
-        const foundProduct = carrito.find(element => element.id === id) 
+    /*
+        const recuento = almacenamiento.reduce((contador, { estado }) => estado === '0' ? contador + 1 : contador, 0);
+    console.log(recuento); // 6
+    */
 
-        return foundProduct
+    return {
+        carrito, 
+        addToCart,
+        decreaseQuantity,
+        deleteProduct,
+        getTotalPrice,
+        getCountPrducts
     }
-
-    return {carrito, addToCard, getProduct}
 }

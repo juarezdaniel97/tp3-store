@@ -5,7 +5,7 @@ import { useCarritoContext } from '../../contexts/CarritoContext';
 
 const ProductCard = ({product}) => {
     
-    const { addToCard } = useCarritoContext();
+    const { addToCart } = useCarritoContext();
 
     return (
         <div className='dark:bg-gray-700  bg-sky-100  rounded-lg overflow-hidden'>
@@ -25,10 +25,9 @@ const ProductCard = ({product}) => {
                     
                     <span className="text-indigo-400 font-medium">${product.price.toFixed(2)}</span>
                     
-                    
                     <Button
                         style={'flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded-lg transition-colors cursor-pointer'}
-                        action={addToCard}
+                        action={addToCart}
                         param={product}
                         name={
                             <>

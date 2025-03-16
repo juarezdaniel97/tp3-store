@@ -6,7 +6,7 @@ const Body = () => {
 
     const products = useProductsContext()
 
-    console.log('products -->', products);
+    // console.log('products -->', products);
     
     return (
             <main className="container mx-auto px-6 py-8 space-x-2">
