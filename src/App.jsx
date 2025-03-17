@@ -1,13 +1,9 @@
 import { Toaster } from "react-hot-toast";
-import { useProductsContext } from "./contexts/ProductsContext"
-import { useThemeContext } from "./contexts/ThemeContext"
 import Home from "./page/Home";
 
 
 
 function App() {
-  const {theme, toggleTheme} = useThemeContext();
-  const products  = useProductsContext();
 
   return (
     <>

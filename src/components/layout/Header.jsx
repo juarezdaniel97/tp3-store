@@ -16,7 +16,7 @@ const Header = () => {
 
 
     return (
-        <nav className='bg-slate-100 text-black dark:bg-gray-900 shadow-md p-4 relative z-20'>
+        <nav className='fixed w-full bg-slate-100 text-black dark:bg-gray-900 shadow-md p-3 z-20'>
             <div className='max-w-7xl mx-auto flex items-center justify-between'>
                 {/* Logo */}
                 <div>
