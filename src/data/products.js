@@ -22,6 +22,20 @@ export const products = [
     },
     {
         id: 4,
+        name: "Zapatillas Adidas",
+        description: "Zapatillas Adidas",
+        price: 120,
+        image: ""
+    },
+    {
+        id: 5,
+        name: "Camisa",
+        description: "100% texturizada",
+        price: 35,
+        image: ""
+    },
+    {
+        id: 6,
         name: "Zapatillas",
         description: "Zapatillas urbanas cómodas para el día a día",
         price: 90,

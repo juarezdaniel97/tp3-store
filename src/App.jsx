@@ -10,7 +10,7 @@ function App() {
       <div className="min-h-screen bg-slate-50 text-black dark:bg-gray-800 dark:text-white">  
         <Home/>
         <Toaster
-          position="top-right"
+          position="bottom-right"
         />
       </div>
     </>

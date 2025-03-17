@@ -10,17 +10,17 @@ const ProductCard = ({product}) => {
     return (
         <div className='dark:bg-gray-700  bg-sky-100  rounded-lg overflow-hidden'>
             
-            <div className='h-48 flex items-center justify-center bg-sky-50  dark:bg-gray-600 shadow-lg'>
+            <div className='h-48 flex items-center justify-center bg-slate-200/50  dark:bg-gray-600 shadow-lg'>
                     {
                         product.image ? 
                             (<img src={product.image} alt={product.name} className='h-full w-full object-cover'/>) : 
-                            ( <div className="text-gray-500">No image</div>)
+                            ( <div className="text-gray-400 dark:text-gray-400">No disponible</div>)
                     }
             </div>
 
             <div className='p-4'>
                 <h3 className="dark:text-whitetext-gray-700 font-medium">{product.name}</h3>
-                <p className="text-gray-400 text-sm mt-1">{product.description}</p>
+                <p className="text-gray-500 text-sm mt-1">{product.description}</p>
                 <div className="flex justify-between items-center mt-4">
                     
                     <span className="text-indigo-400 font-medium">${product.price.toFixed(2)}</span>
@@ -31,9 +31,8 @@ const ProductCard = ({product}) => {
                         param={product}
                         name={
                             <>
-                            {/* <ShoppingCart size={16} className="text-amber-300 mr-1"/> */}
-                            <span>Añadir </span>
-                            <Plus className="ml-1 w-5 h-5" />
+                            <ShoppingCart size={12} className="text-amber-400 mr-1"/>
+                            <span className='text-xs'>Añadir </span>
                             </>
                         }
                     />
