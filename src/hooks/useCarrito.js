@@ -38,6 +38,11 @@ export const useCarrito = ()=>{
                 .filter((item) => item.cantidad > 0)
             );
     };
+
+    //Incrementar Cantidad del Producto
+    const incrementQuantity = (id) => {
+            setCarrito((prev) => prev.map((item) =>item.id === id ? { ...item, cantidad: item.cantidad + 1 } : item));
+    };
     
     //Eliminar Producto
     const deleteProduct = (id) =>{
@@ -46,7 +51,7 @@ export const useCarrito = ()=>{
 
     // Calcular el total del carrito
     const getTotalPrice = () => {
-        return carrito.reduce((total, item) => total + item.precio * item.cantidad, 0);
+        return carrito.reduce((total, item) => total + item.price * item.cantidad, 0);
     };
 
     //Cantidad de Productos 
@@ -54,15 +59,13 @@ export const useCarrito = ()=>{
         return carrito.reduce((contador, item) => contador + item.cantidad, 0)
     }
 
-    /*
-        const recuento = almacenamiento.reduce((contador, { estado }) => estado === '0' ? contador + 1 : contador, 0);
-    console.log(recuento); // 6
-    */
+    
 
     return {
         carrito, 
         addToCart,
         decreaseQuantity,
+        incrementQuantity,
         deleteProduct,
         getTotalPrice,
         getCountPrducts

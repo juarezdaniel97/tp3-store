@@ -1,19 +1,33 @@
-import React, { useState } from 'react'
-import { Menu, Sun, Moon, ShoppingCart, X } from "lucide-react";
+import React, { useState, useRef, useEffect } from 'react'
+import { Menu, Sun, Moon, ShoppingCart } from "lucide-react";
 import Desktop from './Desktop';
 import Mobile from './Mobile';
-import Card from '../ui/Card';
-import Button from '../shared/Button';
 import { menuItems } from '../../data/navigations';
+import Button from '../shared/Button';
 import { useThemeContext } from '../../contexts/ThemeContext';
 import { useCarritoContext } from '../../contexts/CarritoContext';
+import Card from '../ui/Card';
 
 const Header = () => {
     const [isOpenMenu, setIsOpenMenu] = useState(false);
     const [isCardOpen, setIsCardOpen] = useState(false);
     const { theme, toggleTheme } = useThemeContext();
     const { getCountPrducts } = useCarritoContext();
+    const cartRef = useRef(null);
 
+    // Close cart when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (cartRef.current && !cartRef.current.contains(event.target)) {
+                setIsCardOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     return (
         <nav className='bg-slate-100 text-black dark:bg-gray-900 shadow-md p-4 relative z-20'>
@@ -32,29 +46,21 @@ const Header = () => {
 
                 {/* Card and Theme for Desktop */}
                 <div className='hidden md:flex items-center space-x-4'>
-                    
                     {/* Carrito */}
-                    <div className="relative">
+                    <div className="relative" ref={cartRef}>
+                        <button 
+                            className="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
+                            onClick={() => setIsCardOpen(prev => !prev)}
+                            aria-label="Shopping Cart"
+                        >
+                            <ShoppingCart size={24} className="text-gray-700 dark:text-white" />
+                            {getCountPrducts() > 0 && (
+                                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full min-w-[1.25rem] text-center">
+                                    {getCountPrducts()}
+                                </span>
+                            )}
+                        </button>
                         
-                        <Button
-                            style={'p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors'}
-                            action={setIsCardOpen}
-                            name={
-                                <>
-                                    <ShoppingCart size={24} className="text-gray-700 dark:text-white"/>
-                                        {
-                                            
-                                            getCountPrducts() > 0 && (
-                                                <span className='absolute -top-1 -right-1 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full min-w-[1.25rem] text-center'>
-                                                    {getCountPrducts()}
-                                                </span>
-                                            )
-                                        
-                                        }
-                                </>
-                            }
-                        />
-
                         {/* Cart dropdown */}
                         {isCardOpen && (
                             <div className="absolute right-0 mt-2 w-72 bg-white dark:bg-gray-800 shadow-lg rounded-lg z-30">
@@ -77,47 +83,24 @@ const Header = () => {
                 {/* Card and Theme for Mobile */}
                 <div className='md:hidden flex items-center space-x-2'>
                     {/* Carrito */}
-                    <div className="relative">
-                        <Button
-                                style={'p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors'}
-                                action={setIsCardOpen}
-                                name={
-                                    <>
-                                        <ShoppingCart size={24} className="text-gray-700 dark:text-white"/>
-                                            {
-                                                
-                                                getCountPrducts() > 0 && (
-                                                    <span className='absolute -top-1 -right-1 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full min-w-[1.25rem] text-center'>
-                                                        {getCountPrducts()}
-                                                    </span>
-                                                )
-                                            
-                                            }
-                                    </>
-                                }
-                            />
+                    <div className="relative" ref={cartRef}>
+                        <button 
+                            className="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
+                            onClick={() => setIsCardOpen(prev => !prev)}
+                            aria-label="Shopping Cart"
+                        >
+                            <ShoppingCart size={20} className="text-gray-700 dark:text-white" />
+                            {getCountPrducts() > 0 && (
+                                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full min-w-[1.1rem] text-center">
+                                    {getCountPrducts()}
+                                </span>
+                            )}
+                        </button>
                         
-                        {/* Cart dropdown for mobile - positioned correctly */}
+                        {/* Cart dropdown */}
                         {isCardOpen && (
-                            // <div className="absolute top-full right-0 mt-2 w-72 sm:w-96 shadow-lg rounded-lg bg-gray-800 z-50">
-                            //     <Card />
-                            // </div>
-                            
-                            //<div className="fixed top-14 left-0 right-0 mx-auto mt-2 w-[90%] max-w-sm shadow-lg rounded-lg bg-gray-800 z-50">
-                            //    <Card />
-                            //</div>
-
-                            <div className="fixed inset-0 bg-gray-800 z-50 overflow-y-auto pt-5">
-                                <div className="p-4">
-                                    <button 
-                                        onClick={() => setIsCardOpen(false)}
-                                        ///onClick={setIsCardOpen}
-                                        className="absolute top-14 right-10 text-white hover:text-slate-300 cursor-pointer"
-                                    >
-                                        <X size={24} />
-                                    </button>
-                                    <Card />
-                                </div>
+                            <div className="absolute right-0 mt-2 w-72 bg-white dark:bg-gray-800 shadow-lg rounded-lg z-30">
+                                <Card />
                             </div>
                         )}
                     </div>
