@@ -99,14 +99,6 @@ const Header = () => {
                         
                         {/* Cart dropdown for mobile - positioned correctly */}
                         {isCardOpen && (
-                            // <div className="absolute top-full right-0 mt-2 w-72 sm:w-96 shadow-lg rounded-lg bg-gray-800 z-50">
-                            //     <Card />
-                            // </div>
-                            
-                            //<div className="fixed top-14 left-0 right-0 mx-auto mt-2 w-[90%] max-w-sm shadow-lg rounded-lg bg-gray-800 z-50">
-                            //    <Card />
-                            //</div>
-
                             <div className="fixed inset-0 bg-gray-800 z-50 overflow-y-auto pt-5">
                                 <div className="p-4">
                                     <button 

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 
 export const useCarrito = ()=>{
 
@@ -29,6 +30,7 @@ export const useCarrito = ()=>{
 
             }
         });
+        toast.success(`"${product.name}" agregado`);
     };
 
 
