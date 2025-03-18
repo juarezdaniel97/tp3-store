@@ -1,57 +1,35 @@
 import React, { useState } from 'react'
-import { Menu, Sun, Moon, ShoppingCart, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Desktop from './Desktop';
 import Mobile from './Mobile';
 import Card from '../ui/Card';
 import Button from '../shared/Button';
 import { menuItems } from '../../data/navigations';
-import { useCarritoContext } from '../../contexts/CarritoContext';
 import ThemeButton from '../shared/ThemeButton';
+import Logo from '../shared/Logo';
+import CardButton from '../ui/CardButton';
 
 const Header = () => {
     const [isOpenMenu, setIsOpenMenu] = useState(false);
     const [isCardOpen, setIsCardOpen] = useState(false);
-    const { getCountPrducts } = useCarritoContext();
 
 
     return (
         <nav className='fixed w-full bg-slate-100 text-black dark:bg-gray-900 shadow-md p-3 z-20'>
             <div className='max-w-7xl mx-auto flex items-center justify-between'>
-                {/* Logo */}
-                <div>
-                    <div className="flex items-center space-x-2">
-                        <div className="w-3 h-6 bg-gray-600 dark:bg-white rounded-sm" />
-                        <div className="w-1 h-6 bg-indigo-600 rounded-sm" />
-                        <span className="text-dark dark:text-white text-xl font-semibold">Store</span>
-                    </div>
-                </div>
+                {/* Logo */} 
+                <Logo/>
 
                 {/* Desktop Navigation */}
                 <Desktop menuItems={menuItems} />
 
-                {/* Card and Theme for Desktop */}
+                {/*Desktop */}
                 <div className='hidden md:flex items-center space-x-4'>
                     
                     {/* Carrito */}
                     <div className="relative">
-                        
-                        <Button
-                            style={'p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors'}
-                            action={setIsCardOpen}
-                            name={
-                                <>
-                                    <ShoppingCart size={24} className="text-gray-700 dark:text-white"/>
-                                        {
-                                            
-                                            getCountPrducts() > 0 && (
-                                                <span className='absolute -top-1 -right-1 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full min-w-[1.25rem] text-center'>
-                                                    {getCountPrducts()}
-                                                </span>
-                                            )
-                                        
-                                        }
-                                </>
-                            }
+                        <CardButton
+                            setIsCardOpen={setIsCardOpen}
                         />
 
                         {/* Cart dropdown */}
@@ -66,40 +44,24 @@ const Header = () => {
                     <ThemeButton/>
                 </div>
 
-                {/* Card and Theme for Mobile */}
+                {/*Mobile */}
                 <div className='md:hidden flex items-center space-x-2'>
+                    
                     {/* Carrito */}
                     <div className="relative">
-                        <Button
-                                style={'p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors'}
-                                action={setIsCardOpen}
-                                name={
-                                    <>
-                                        <ShoppingCart size={24} className="text-gray-700 dark:text-white"/>
-                                            {
-                                                
-                                                getCountPrducts() > 0 && (
-                                                    <span className='absolute -top-1 -right-1 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full min-w-[1.25rem] text-center'>
-                                                        {getCountPrducts()}
-                                                    </span>
-                                                )
-                                            
-                                            }
-                                    </>
-                                }
-                            />
+                        <CardButton
+                            setIsCardOpen={setIsCardOpen}
+                        />
                         
-                        {/* Cart dropdown for mobile - positioned correctly */}
                         {isCardOpen && (
-                            <div className="fixed inset-0 bg-gray-800 z-50 overflow-y-auto pt-5">
+                            <div className="fixed inset-0 bg-slate-300 dark:bg-gray-800 z-50 overflow-y-auto pt-5">
                                 <div className="p-4">
-                                    <button 
-                                        onClick={() => setIsCardOpen(false)}
-                                        ///onClick={setIsCardOpen}
-                                        className="absolute top-14 right-10 text-black hover:text-gray-500 dark:text-white dark:hover:text-slate-100 cursor-pointer"
-                                    >
-                                        <X size={24} />
-                                    </button>
+                                    {/* Cerrar Card */}
+                                    <Button
+                                        style={'absolute top-14 right-10 text-black hover:text-gray-500 dark:text-white dark:hover:text-slate-100 cursor-pointer'}
+                                        action={setIsCardOpen}
+                                        name={<X size={24} />}
+                                    />
                                     <Card />
                                 </div>
                             </div>
@@ -108,17 +70,17 @@ const Header = () => {
 
                     {/* Button Theme */}
                     <ThemeButton/>
-                            
+
                     {/* Menú Burger */}
                     <Button
                         style={'p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors'}
-                        action={() => setIsOpenMenu(prev => !prev)}
+                        action={setIsOpenMenu}
                         name={<Menu size={20} className="text-gray-700 dark:text-white" />}
                     />
                 </div>
             </div>
 
-            {/* Mobile Menu */}
+            {/* Mobile Menu Navigation */}
             {isOpenMenu && (
                 <div className="mt-2">
                     <Mobile menuItems={menuItems} />

@@ -4,7 +4,7 @@ import { X, ShoppingBag, Minus, Plus } from 'lucide-react';
 import Button from '../shared/Button';
 
 const Card = () => {
-    const { carrito, decreaseQuantity, incrementQuantity, deleteProduct, getTotalPrice } = useCarritoContext();
+    const { carrito, decreaseQuantity, incrementQuantity, deleteProduct, getTotalPrice, deleteCard } = useCarritoContext();
 
     if (carrito.length === 0) {
         return (
@@ -31,7 +31,7 @@ const Card = () => {
 
                     <div key={item.id} className="flex items-center space-x-3 bg-slate-100 dark:bg-gray-800/50 p-2 rounded-lg">
                         
-                        {/* Imagen */}
+                        {/* Header */}
                         <div className="h-14 w-14 bg-slate-200 dark:bg-gray-600 rounded flex items-center justify-center overflow-hidden flex-shrink-0">
                             {item.image ? (
                                 <img src={item.image} alt={item.name} className="h-12 w-12 object-cover" />
@@ -40,7 +40,7 @@ const Card = () => {
                             )}
                         </div>
 
-                        {/* Contenido */}
+                        {/* Body */}
                         <div className="flex-1 min-w-0">
                             
                             <h4 className="text-sm text-gray-800 dark:text-white truncate">{item.name}</h4>
@@ -78,16 +78,18 @@ const Card = () => {
                     </div>
                 ))}
             </div>
-            
+            {/* Footer */}
             <div className="mt-4 pt-3 border-t border-slate-200 dark:border-gray-700">
                 <div className="flex justify-between mb-4">
                     <span className="text-gray-600 dark:text-gray-300">Total:</span>
                     <span className="text-gray-800 dark:text-white font-medium">${getTotalPrice().toFixed(2)}</span>
                 </div>
                 
-                <button className="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors">
-                    Finalizar compra
-                </button>
+                <Button
+                style={'w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors'}
+                action={deleteCard}
+                name={'Finalizar Compra'}
+                />
             </div>
         </div>
     );

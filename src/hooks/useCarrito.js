@@ -33,7 +33,6 @@ export const useCarrito = ()=>{
         toast.success(`"${product.name}" agregado`);
     };
 
-
     //Decrementar Cantidad del Producto
     const decreaseQuantity = (id) => {
             setCarrito((prev) => prev.map((item) =>item.id === id ? { ...item, cantidad: item.cantidad - 1 } : item)
@@ -61,7 +60,11 @@ export const useCarrito = ()=>{
         return carrito.reduce((contador, item) => contador + item.cantidad, 0)
     }
 
-    
+    //Eliminar carrito
+    const deleteCard = () =>{
+        setCarrito([]);
+        toast.success("¡Gracias por su compra!");
+    }
 
     return {
         carrito, 
@@ -70,6 +73,7 @@ export const useCarrito = ()=>{
         incrementQuantity,
         deleteProduct,
         getTotalPrice,
-        getCountPrducts
+        getCountPrducts,
+        deleteCard
     }
 }
