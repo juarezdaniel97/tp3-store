@@ -5,14 +5,12 @@ import Mobile from './Mobile';
 import Card from '../ui/Card';
 import Button from '../shared/Button';
 import { menuItems } from '../../data/navigations';
-import { useThemeContext } from '../../contexts/ThemeContext';
 import { useCarritoContext } from '../../contexts/CarritoContext';
 import ThemeButton from '../shared/ThemeButton';
 
 const Header = () => {
     const [isOpenMenu, setIsOpenMenu] = useState(false);
     const [isCardOpen, setIsCardOpen] = useState(false);
-    const { theme, toggleTheme } = useThemeContext();
     const { getCountPrducts } = useCarritoContext();
 
 
