@@ -104,7 +104,7 @@ const Header = () => {
                                     <button 
                                         onClick={() => setIsCardOpen(false)}
                                         ///onClick={setIsCardOpen}
-                                        className="absolute top-14 right-10 text-white hover:text-slate-300 cursor-pointer"
+                                        className="absolute top-14 right-10 text-black hover:text-gray-500 dark:text-white dark:hover:text-slate-100 cursor-pointer"
                                     >
                                         <X size={24} />
                                     </button>
