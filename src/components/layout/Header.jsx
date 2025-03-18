@@ -7,6 +7,7 @@ import Button from '../shared/Button';
 import { menuItems } from '../../data/navigations';
 import { useThemeContext } from '../../contexts/ThemeContext';
 import { useCarritoContext } from '../../contexts/CarritoContext';
+import ThemeButton from '../shared/ThemeButton';
 
 const Header = () => {
     const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -64,14 +65,7 @@ const Header = () => {
                     </div>
 
                     {/* Button Theme */}
-                    <Button
-                        style={'p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors'}
-                        action={toggleTheme}
-                        name={theme === "dark" 
-                            ? <Sun size={20} className="text-yellow-500" /> 
-                            : <Moon size={20} className="text-blue-900" />
-                        }
-                    /> 
+                    <ThemeButton/>
                 </div>
 
                 {/* Card and Theme for Mobile */}
@@ -115,14 +109,7 @@ const Header = () => {
                     </div>
 
                     {/* Button Theme */}
-                    <Button
-                        style={'p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors'}
-                        action={toggleTheme}
-                        name={theme === "dark" 
-                            ? <Sun size={20} className="text-yellow-500" /> 
-                            : <Moon size={20} className="text-blue-900" />
-                        }
-                    /> 
+                    <ThemeButton/>
                             
                     {/* Menú Burger */}
                     <Button
